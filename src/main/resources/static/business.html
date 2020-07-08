@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FACT CONSULTANTS</title>
+    <link rel="icon" href="images/logo.jpg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .sidenav {
+            z-index: 10;
+            border-top: 2px #000000;
+            position: absolute;
+            float: left;
+            left: 0;
+            bottom: 0;
+            margin-top: -5%;
+            padding-bottom: -10px;
+            width: 250px;
+            min-height: 100%;
+            background: green;
+        }
+        
+        .sidenav a {
+            padding: 20px 10px 10px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        
+        .sidenav a:hover {
+            color: #064579;
+        }
+        
+        .main {
+            margin-left: 300px;
+            /* Same width as the sidebar + left position in px */
+            font-size: 20px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+        
+        @media (max-width: 576px) {
+            .sidenav {
+                display: none;
+            }
+            .main {
+                margin-left: 0px;
+                font-size: 15px
+            }
+        }
+    </style>
+    <script>
+        var mybutton = document.getElementById("myBtn");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+
+        function submitFunction() {
+
+            var name = document.getElementById("name").value;
+            var phoneNo = document.getElementById("phoneNo").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+            var data = {
+                "message": message,
+                "phoneNo": phoneNo,
+                "emailId": email,
+                "name": name
+            };
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                dataType: "json",
+                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
+                success: function(data) {
+
+                    if (data.status == "Success") {
+                        $("#name").val("");
+                        $("#phoneNo").val("");
+                        $("#email").val("");
+                        $("#message").val("");
+
+                        alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+                            //  $("#myModal").appendTo('body').modal();
+                    }
+
+                },
+                error: function(data) {
+                    alert("Sorry Maintainanace is going on please try after some time...")
+                        // $("#errorMessage").appendTo('body').modal();
+                }
+            });
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-wrap">
+                        <div class="row">
+                            <div class="col-md-14 d-flex align-items-center">
+                                <p class="mb-0 phone pl-md-2">
+                                    <class="mr-2"><span class="fa fa-phone mr-1"></span> +91 9831900931 &nbsp;
+                                        <span class="fa fa-whatsapp"><i class="sr-only"></i></span> &nbsp;+91 6290229181 &nbsp;
+                                        <span class="fa fa-paper-plane mr-1"></span>connect@factconsultants.in</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-md-end">
+                                <div class="social-media">
+                                    <p class="mb-0 d-flex">
+                                        <a href="https://www.facebook.com/thefactconsultant" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                                        <a href="https://www.instagram.com/fact_consultants" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                                        <a href="https://www.linkedin.com/company/the-fact-consultants" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i class="sr-only">LinkedIn</i></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <img src="images/logo.jpg" width="150" height="80" class="logo-image">
+        <a class="navbar-brand" id="hideFact" href="index.html" style="position:relative; left:80px;">FACT CONSULTANTS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item" style="padding-left: 20px;"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item" style="padding-left: 20px;"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item active" style="padding-left: 20px;"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item" style="padding-left: 20px;"><a href="resource.html" class="nav-link">Resources</a>
+                    <li class="nav-item" style="padding-left: 20px;"><a href="blog.html" class="nav-link">Blogs</a>
+                        <li class="nav-item" style="padding-left: 20px;"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+    <section class="hero-wrap hero-wrap-2  col-lg-12 col-md-12 col-xm-12" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                        <h1 class="mb-0 bread">Services</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="main">
+            <div class="sidenav">
+                <a href="finance.html">Finance</a>
+                <a href="accounting.html">Accounting & Advisory</a>
+                <a href="compliance.html">Compliance & Payroll</a>
+                <a href="taxation.html">Taxation</a>
+                <a href="business.html">Business SetUp</a>
+                <a href="reg.html">Registration</a>
+            </div>
+
+            <div class="container">
+                <div class="row d-flex no-gutters">
+                    <div class="col-md-6 pl-md-5 py-md-5">
+                        <div class="heading-section pl-md-4 pt-md-5">
+                            <center>
+                                <h2 class="mb-4">BUSINESS SETUP</h2>
+                            </center>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-wealth"></span></div>
+                            <div class="text pl-4">
+                                <h4>Company Incorporation</h4>
+                                <p>Ideal Business Structure For Startups And Medium Size Entities Going For Funding.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-accountant"></span></div>
+                            <div class="text pl-4">
+                                <h4>One Person Company</h4>
+                                <p>Ideal Business Structure For Sole Promoter Entered Into Entrepreneurship.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-teamwork"></span></div>
+                            <div class="text pl-4">
+                                <h4>LLP</h4>
+                                <p>Ideal Business Structure For Professionals And Small Entities.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-accounting"></span></div>
+                            <div class="text pl-4">
+                                <h4>Partnership Firm</h4>
+                                <p>Ideal Business Structure For Small Sized Partnership. Partnership firm is one of the cheapest ways to form a legal entity in India.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-budget"></span></div>
+                            <div class="text pl-4">
+                                <h4>Business Plan</h4>
+                                <p>We help you in drafting a well crafted Business Plan representing your idea, goal, vision and mission in a single Document.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-loan"></span></div>
+                            <div class="text pl-4">
+                                <h4>Policy Drafting</h4>
+                                <p>Policies are important as it defines what is acceptable and unacceptable in the workplace.</p>
+                            </div>
+                        </div>
+                        <div class="services-2 w-100 d-flex">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-accounting-1"></span></div>
+                            <div class="text pl-4">
+                                <h4>Market Survey & Strategizing</h4>
+                                <p>We conduct all round marketing surveys to build a concrete base for your entity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container-fluid px-lg-5">
+            <div class="row">
+                <div class="col-md-9 py-5">
+                    <div class="row">
+                        <div class="col-md-4 mb-md-0 mb-4">
+                            <h2 class="footer-heading">About us</h2>
+                            <p>We are a dynamic team of professionals. We specialize in delivering solutions for Managerial & Financial hindrances to both Individuals & Corporate entities.
+                                <ul class="ftco-footer-social p-0">
+                                    <li class="ftco-animate"><a href="https://www.facebook.com/thefactconsultant" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="ftco-animate"><a href="https://www.instagram.com/fact_consultants" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+                                    <li class="ftco-animate"><a href="https://www.linkedin.com/company/the-fact-consultants" target="_blank" data-toggle="tooltip" data-placement="top" title="LinkedIn"><span class="fa fa-linkedin"></span></a></li>
+                                </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 col-lg-10">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-md-0 mb-4">
+                                            <h2 class="footer-heading">Services</h2>
+                                            <ul class="list-unstyled">
+                                                <li><a href="finance.html" class="py-1 d-block">Finance</a></li>
+                                                <li><a href="accounting.html" class="py-1 d-block">Accounting & Advisory</a></li>
+                                                <li><a href="compliance.html" class="py-1 d-block">Compliance & Payroll</a></li>
+                                                <li><a href="taxation.html" class="py-1 d-block">Taxation</a></li>
+                                                <li><a href="business.html" class="py-1 d-block">Business SetUp</a></li>
+                                                <li><a href="reg.html" class="py-1 d-block">Registration</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-md-5">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 py-md-5 py-4 aside-stretch-right pl-lg-5">
+                    <h2 class="footer-heading">Free Counselling</h2>
+                    <form class="form-consultation" onsubmit="submitFunction()">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phoneNo" pattern="\d{10}" title="Please enter exactly 10 digits" class="form-control" id="phoneNoId" maxlength="10" minlength="10" class="form-control" placeholder="Contact No." required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="" id="message" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control submit px-3">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal content-->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Thanks For Sharing yours details. Our Team Will get back to You... </b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal content-->
+        <div class="modal fade" id="errorMessage" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Sorry Maintainanace is going on please try after some time... </b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    </footer>
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
