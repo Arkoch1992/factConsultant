@@ -86,7 +86,7 @@
         }
 
         function submitFunction() {
-
+        	 alert("Thanks For Sharing yours details. Our Team Will get back to You...")
             var name = document.getElementById("name").value;
             var phoneNo = document.getElementById("phoneNo").value;
             var email = document.getElementById("email").value;
@@ -103,7 +103,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(data),
                 dataType: "json",
-                url: "http://localhost:8080//storeCustomerDetails",
+                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
                 success: function(data) {
 
                     if (data.status == "Success") {
@@ -111,13 +111,13 @@
                         $("#phoneNo").val("");
                         $("#email").val("");
                         $("#message").val("");
-                        alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+                       // alert("Thanks For Sharing yours details. Our Team Will get back to You...")
                             //  $("#myModal").appendTo('body').modal();
                     }
 
                 },
                 error: function(data) {
-                    alert("Sorry Maintainanace is going on please try after some time...")
+                    //alert("Sorry Maintainanace is going on please try after some time...")
                         // $("#errorMessage").appendTo('body').modal();
                 }
             });
