@@ -43,7 +43,7 @@
         }
 
         function submitFunction() {
-        	 alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+        	alert("Thanks For Sharing yours details. Our Team Will get back to You...")
             var name = document.getElementById("name").value;
             var phoneNo = document.getElementById("phoneNo").value;
             var email = document.getElementById("email").value;
@@ -68,13 +68,53 @@
                         $("#phoneNo").val("");
                         $("#email").val("");
                         $("#message").val("");
-                       // alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+                        
                             //  $("#myModal").appendTo('body').modal();
                     }
 
                 },
                 error: function(data) {
-                   // alert("Sorry Maintainanace is going on please try after some time...")
+                    alert("Sorry Maintainanace is going on please try after some time...")
+                        // $("#errorMessage").appendTo('body').modal();
+                }
+            });
+
+        }
+
+
+
+        function submitDownloadFunction() {
+
+            var name = document.getElementById("nameId").value;
+            var phoneNo = document.getElementById("phoneNoId").value;
+            var email = document.getElementById("emailId").value;
+            var message = "";
+            var data = {
+                "message": message,
+                "phoneNo": phoneNo,
+                "emailId": email,
+                "name": name
+            };
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                dataType: "json",
+                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
+                success: function(data) {
+
+                    if (data.status == "Success") {
+                        $("#name").val("");
+                        $("#phoneNo").val("");
+                        $("#email").val("");
+                        $("#message").val("");
+                            //  $("#myModal").appendTo('body').modal();
+                    }
+
+                },
+                error: function(data) {
+                    alert("Sorry Maintainanace is going on please try after some time...")
                         // $("#errorMessage").appendTo('body').modal();
                 }
             });
@@ -165,21 +205,21 @@
 
                                     <div class="login-popup">
                                         <div class="form-popup" id="popupForm">
-                                            <form method="get" action="fact.pdf" class="form-container">
+                                            <form action="fact.pdf" target="_blank" onsubmit="submitDownloadFunction()" class="form-container">
                                                 <div align="right">
                                                     <button type="button" class="cls cancel" onclick="closeForm()">X </button></div>
                                                 <label for="name">
           <strong>Name</strong>
           </label>
-                                                <input type="text" id="Name" placeholder="Name" name="name" required>
+                                                <input type="text" id="nameId" placeholder="Name" name="name" required>
                                                 <label for="email">
           <strong>E-mail</strong>
           </label>
-                                                <input type="text" id="email" placeholder="E-mail" name="email" required>
+                                                <input type="text" id="emailId" placeholder="E-mail" name="email" required>
                                                 <label for="Contact">
           <strong>Contact</strong>
           </label>
-                                                <input type="text" id="contact" placeholder="Contact" name="contact" required>
+                                                <input type="text" id="contact" pattern="\d{10}" title="Please enter exactly 10 digits" maxlength="10" minlength="10" placeholder="Contact No." name="contact" required>
                                                 <input type="submit" value="Download" name="fact" class="btn btn-primary">
                                             </form>
                                         </div>
@@ -244,7 +284,7 @@
                             <input type="text" id="name" class="form-control" placeholder="Full Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="phoneNo" pattern="\d{10}" title="Please enter exactly 10 digits" class="form-control" id="phoneNoId" maxlength="10" minlength="10" class="form-control" placeholder="Contact No." required>
+                            <input type="text" id="phoneNo" pattern="\d{10}" title="Please enter exactly 10 digits" maxlength="10" minlength="10" class="form-control" placeholder="Contact No." required>
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" class="form-control" placeholder="Email" required>
