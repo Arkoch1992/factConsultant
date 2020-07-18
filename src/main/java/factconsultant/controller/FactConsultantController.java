@@ -7,9 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.compress.utils.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,7 @@ public class FactConsultantController {
 	public CustomerService customerService;
 	public CustomerRepository customerRepo;
 
+	private static final Logger logger = LoggerFactory.getLogger(FactConsultantController.class);
 	@Autowired
 	FactConsultantController(CustomerService customerService,CustomerRepository customerRepo) {
 		this.customerService = customerService;
@@ -46,27 +50,28 @@ public class FactConsultantController {
 	}
 
 	@GetMapping("/getReport")
-	List<Customer> getCustomerReport() {
+	ResponseEntity<List<Customer>> getCustomerReport() {
 		List<Customer> customerReport = new ArrayList<>();
 		try {
 			customerReport = customerService.getCustomerReports();
+			logger.info("get Customer Report");
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			 
 		}
 
-		return customerReport;
+		  return new ResponseEntity<>(customerReport, HttpStatus.OK);
 	}
 @PostMapping("/storeCustomerDetails")
 	ResponseEntity<Map<String,Object>> saveCustomerDetails(@RequestBody CustomerRequest customerRequest) {
 		Map<String,Object> response=new HashMap<String, Object>();
-System.out.println("enter into");
+
 		try {
 			customerService.saveCustomerDetails(customerRequest);
 			response.put("status", "Success");
-			
+			logger.info("Storing in Customer Details {}",customerRequest);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error Storing in Customer Details {}",e.getMessage());
 			response.put("status", "Failed");
 		}
 		 return new ResponseEntity<Map<String,Object>>(response, HttpStatus.CREATED);

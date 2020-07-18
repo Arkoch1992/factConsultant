@@ -43,7 +43,12 @@
         }
 
         function submitFunction() {
-        	alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+            alert("Thanks For Sharing yours details. Our Team Will get back to You...");
+
+            var factConsultantURL = localStorage.getItem("factConsultantURL");
+            if (factConsultantURL == null || factConsultantURL == undefined) {
+                factConsultantURL = "http://3.128.72.201//storeCustomerDetails";
+            }
             var name = document.getElementById("name").value;
             var phoneNo = document.getElementById("phoneNo").value;
             var email = document.getElementById("email").value;
@@ -60,7 +65,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(data),
                 dataType: "json",
-                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
+                url: factConsultantURL,
                 success: function(data) {
 
                     if (data.status == "Success") {
@@ -68,8 +73,8 @@
                         $("#phoneNo").val("");
                         $("#email").val("");
                         $("#message").val("");
-                        
-                            //  $("#myModal").appendTo('body').modal();
+
+                        //  $("#myModal").appendTo('body').modal();
                     }
 
                 },
@@ -89,6 +94,10 @@
             var phoneNo = document.getElementById("phoneNoId").value;
             var email = document.getElementById("emailId").value;
             var message = "";
+            var factConsultantURL = localStorage.getItem("factConsultantURL");
+            if (factConsultantURL == null || factConsultantURL == undefined) {
+                factConsultantURL = "http://3.128.72.201//storeCustomerDetails";
+            }
             var data = {
                 "message": message,
                 "phoneNo": phoneNo,
@@ -101,7 +110,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(data),
                 dataType: "json",
-                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
+                url: factConsultantURL,
                 success: function(data) {
 
                     if (data.status == "Success") {
@@ -109,7 +118,7 @@
                         $("#phoneNo").val("");
                         $("#email").val("");
                         $("#message").val("");
-                            //  $("#myModal").appendTo('body').modal();
+                        //  $("#myModal").appendTo('body').modal();
                     }
 
                 },
@@ -219,7 +228,7 @@
                                                 <label for="Contact">
           <strong>Contact</strong>
           </label>
-                                                <input type="text" id="contact" pattern="\d{10}" title="Please enter exactly 10 digits" maxlength="10" minlength="10" placeholder="Contact No." name="contact" required>
+                                                <input type="text" id="phoneNoId" pattern="\d{10}" title="Please enter exactly 10 digits" maxlength="10" minlength="10" placeholder="Contact No." name="contact" required>
                                                 <input type="submit" value="Download" name="fact" class="btn btn-primary">
                                             </form>
                                         </div>

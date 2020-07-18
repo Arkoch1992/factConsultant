@@ -86,7 +86,12 @@
 
 
         function submitFunction() {
-        	 alert("Thanks For Sharing yours details. Our Team Will get back to You...")
+            alert("Thanks For Sharing yours details. Our Team Will get back to You...");
+
+            var factConsultantURL = localStorage.getItem("factConsultantURL");
+            if (factConsultantURL == null || factConsultantURL == undefined) {
+                factConsultantURL = "http://3.128.72.201//storeCustomerDetails";
+            }
             var name = document.getElementById("name").value;
             var phoneNo = document.getElementById("phoneNo").value;
             var email = document.getElementById("email").value;
@@ -103,7 +108,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(data),
                 dataType: "json",
-                url: "https://fact-consultant.herokuapp.com//storeCustomerDetails",
+                url: factConsultantURL,
                 success: function(data) {
 
                     if (data.status == "Success") {
@@ -112,14 +117,14 @@
                         $("#email").val("");
                         $("#message").val("");
 
-                       
-                            //  $("#myModal").appendTo('body').modal();
+
+                        //  $("#myModal").appendTo('body').modal();
                     }
 
                 },
                 error: function(data) {
-                   // alert("Sorry Maintainanace is going on please try after some time...")
-                        // $("#errorMessage").appendTo('body').modal();
+                    // alert("Sorry Maintainanace is going on please try after some time...")
+                    // $("#errorMessage").appendTo('body').modal();
                 }
             });
 
